@@ -93,7 +93,7 @@ class OttoNetworkEngine:
                         fallback_system.learn_completed_phrase(completed_text)
 
             except json.JSONDecodeError:
-                print("Received unparaseable JSON stream payload.")
+                print("Received unparseable JSON stream payload.")
         
     async def queue_message(self, priority: int, payload: dict):
         """Exposes safe mechanism to drop packets into the priority queue."""

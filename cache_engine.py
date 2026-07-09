@@ -14,8 +14,8 @@ class AACPhraseCache:
 
     def _get_embedding(self, text: str) -> list:
         """Generates local embeddings using nomic-embed-text."""
-        response = ollama.embeddings(model="nomic-embed-text", prompt=text)
-        return response["embedding"]
+        response = ollama.embeddings(model="nomic-embed-text", input=text)
+        return response["embeddings"][0]
     
     def add_phrase(self, phrase: str, category: str):
         """Adds a standard phrase to the high-speed local cache."""
@@ -25,7 +25,7 @@ class AACPhraseCache:
         # Add to FAISS index
         self.index.add(vector)
 
-        #store metadata
+        # Store metadata
         self.phrase_map[self.current_id] = {"phrase": phrase, "category": category}
         self.current_id += 1
 
